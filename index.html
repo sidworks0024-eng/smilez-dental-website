@@ -1247,6 +1247,7 @@ Please confirm my appointment.`;
     addDoc,
     serverTimestamp,
     query,
+    where,
     orderBy,
     limit,
     onSnapshot
@@ -1315,6 +1316,7 @@ Please confirm my appointment.`;
 
   const reviewsQuery = query(
     collection(db, "reviews"),
+    where("approved", "==", true),
     orderBy("createdAt", "desc"),
     limit(20)
   );
@@ -1393,12 +1395,13 @@ Please confirm my appointment.`;
         name,
         rating,
         review,
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
+        approved: false
       });
 
       reviewForm.reset();
       reviewNotice.textContent =
-        "Thank you! Your review was submitted successfully.";
+        "Thank you! Your review was submitted successfully and is awaiting approval.";
       reviewNotice.style.color = "#16803c";
     } catch (error) {
       console.error("Could not submit review:", error);
