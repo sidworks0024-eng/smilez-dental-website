@@ -1346,11 +1346,8 @@ Please confirm my appointment.`;
       });
     },
     (error) => {
-      console.error("Could not load reviews:", error);
-      reviewNotice.textContent =
-        "Reviews could not be loaded. Please check Firebase rules.";
-      reviewNotice.style.color = "#c0392b";
-    }
+  console.error("Could not load reviews:", error);
+}
   );
 
   reviewForm?.addEventListener("submit", async (event) => {
